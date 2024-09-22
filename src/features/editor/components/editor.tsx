@@ -11,7 +11,7 @@ export const Editor = () => {
 
     useEffect(() =>{
         init()
-    },[])
+    },[init])
 
     return (
         <div ref={workspaceRef}>
