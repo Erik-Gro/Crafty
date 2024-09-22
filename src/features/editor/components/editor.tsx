@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { useEditor } from "../hooks/useEditor"
+import { fabric } from "fabric"
 
 export const Editor = () => {
     const {init} = useEditor()
@@ -10,8 +11,16 @@ export const Editor = () => {
     const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() =>{
+        const canvas = new fabric.Canvas(
+            canvasRef.current,
+            {
+                controlsAboveOverlay:true,
+                preserveObjectStacking: true,
+            }
+        )
+
         init({
-            initialCanvas: "",
+            initialCanvas: canvas,
             initialContainer: containerRef.current!,
         })
     },[init])
