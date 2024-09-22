@@ -7,14 +7,17 @@ export const Editor = () => {
     const {init} = useEditor()
 
     const canvasRef = useRef(null)
-    const workspaceRef = useRef(null)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() =>{
-        init()
+        init({
+            initialCanvas: "",
+            initialContainer: containerRef.current!,
+        })
     },[init])
 
     return (
-        <div ref={workspaceRef}>
+        <div ref={containerRef}>
             <canvas ref={canvasRef}/>
         </div>
     )
