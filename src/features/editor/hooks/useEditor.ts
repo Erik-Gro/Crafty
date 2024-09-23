@@ -6,7 +6,7 @@ export const useEditor = () => {
         initialCanvas,
         initialContainer,
     }:{
-        initialCanvas: any;
+        initialCanvas: fabric.Canvas;
         initialContainer:HTMLDivElement
     }) => {
         fabric.Object.prototype.set({
