@@ -1,8 +1,12 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { useEditor } from "../hooks/useEditor"
+import { useEditor } from "./hooks/useEditor"
 import { fabric } from "fabric"
+import { Navbar } from "./components/Navbar"
+import { Sidebar } from "./components/Sidebar"
+import { Toolbar } from "./components/Toolbar"
+import { Footer } from "./components/Footer"
 
 export const Editor = () => {
     const { init } = useEditor()
@@ -32,9 +36,19 @@ export const Editor = () => {
 
     return (
         <div className="h-full flex flex-col">
-            <div className="h-full flex-1 bg-muted" ref={containerRef}>
+            <Navbar/>
+            <div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex">
+                <Sidebar/>
+                <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
+                    <Toolbar/>
+                    <div className="flex-1 h-[calc(100%-124px)] bg-muted" ref={containerRef}>
                 <canvas ref={canvasRef} />
+            </div>
+            <Footer/>
+            </main>
             </div>
         </div>
     )
 }
+
+

@@ -1,4 +1,4 @@
-import { Editor } from "@/features/editor/components/editor"
+import { Editor } from "@/features/editor/Editor"
 
 const EditorPage = () => {
     return <Editor/>
