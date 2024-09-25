@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150">
+  <!-- Background -->
+  <rect width="500" height="150" fill="url(#bgGradient)" />
+
+  <!-- Gradient for the background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FEE140" />
+      <stop offset="100%" stop-color="#FA709A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dynamic Brush Stroke - Representing Creativity -->
+  <path d="M20 70 Q100 20, 270 80 T480 60" fill="transparent" stroke="url(#strokeGradient)" stroke-width="25" stroke-linecap="round" />
+  
+  <!-- Gradient for the brush stroke -->
+  <defs>
+    <linearGradient id="strokeGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00C9FF" />
+      <stop offset="100%" stop-color="#92FE9D" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circle with a subtle shadow for depth -->
+  <circle cx="80" cy="75" r="45" fill="#4CAF50" filter="url(#shadow)" />
+
+  <!-- Shadow for the circle -->
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="rgba(0, 0, 0, 0.2)" />
+    </filter>
+  </defs>
+
+  <!-- 'C' for Crafty with a playful design -->
+  <text x="53" y="90" font-family="Arial, sans-serif" font-size="60" fill="#fff" font-weight="bold">C</text>
+
+  <!-- Main Brand Name - Crafty -->
+  <text x="150" y="85" font-family="Arial, sans-serif" font-size="55" fill="#fff" font-weight="bold" letter-spacing="2">
+    Crafty
+  </text>
+
+  <!-- Subtext - Canva-like tagline -->
+  <text x="155" y="115" font-family="Arial, sans-serif" font-size="20" fill="#fff" font-style="italic">
+    Design. Create. Inspire.
+  </text>
+</svg>
