@@ -1,12 +1,12 @@
 "use client";
 
 import { CiFileOn } from "react-icons/ci";
-import { 
-  ChevronDown, 
-  Download, 
-  MousePointerClick, 
-  Redo2, 
-  Undo2
+import {
+  ChevronDown,
+  Download,
+  MousePointerClick,
+  Redo2,
+  Undo2,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -26,7 +26,7 @@ interface NavbarProps {
   editor: Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
-};
+}
 
 export const Navbar = ({
   id,
@@ -34,7 +34,6 @@ export const Navbar = ({
   activeTool,
   onChangeActiveTool,
 }: NavbarProps) => {
-
   return (
     <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
       <Logo />
