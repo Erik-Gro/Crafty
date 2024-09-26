@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Logo } from "./Logo";
+import { ActiveTool } from "../types/activeTools";
 
 interface NavbarProps {
   id: string;
