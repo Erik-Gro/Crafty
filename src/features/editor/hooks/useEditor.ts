@@ -8,6 +8,7 @@ import {
   DIAMOND_OPTIONS,
   FILL_COLOR,
   FONT_FAMILY,
+  FONT_WEIGHT,
   RECTANGLE_OPTIONS,
   STROKE_COLOR,
   STROKE_DASH_ARRAY,
@@ -178,6 +179,76 @@ const buildEditor = ({
       addToCanvas(object);
     },
     canvas,
+    getActiveFontWeight: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return FONT_WEIGHT;
+      }
+
+      // @ts-ignore
+      const value = selectedObject.get("fontWeight") || FONT_WEIGHT;
+
+      return value;
+    },
+    getActiveFontFamily: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return fontFamily;
+      }
+
+      // @ts-ignore
+      const value = selectedObject.get("fontFamily") || fontFamily;
+
+      return value;
+    },
+    getActiveFillColor: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return fillColor;
+      }
+
+      const value = selectedObject.get("fill") || fillColor;
+
+      // Currently, gradients & patterns are not supported
+      return value as string;
+    },
+    getActiveStrokeColor: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return strokeColor;
+      }
+
+      const value = selectedObject.get("stroke") || strokeColor;
+
+      return value;
+    },
+    getActiveStrokeWidth: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return strokeWidth;
+      }
+
+      const value = selectedObject.get("strokeWidth") || strokeWidth;
+
+      return value;
+    },
+    getActiveStrokeDashArray: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) {
+        return strokeDashArray;
+      }
+
+      const value = selectedObject.get("strokeDashArray") || strokeDashArray;
+
+      return value;
+    },
+    selectedObjects,
   };
 };
 
