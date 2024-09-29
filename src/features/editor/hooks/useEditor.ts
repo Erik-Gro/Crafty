@@ -514,9 +514,9 @@ export const useEditor = () => {
       setCanvas(initialCanvas);
       setContainer(initialContainer);
 
-      const rect = new fabric.Rect({ height: 100, width: 100, fill: "black" });
-      initialCanvas.add(rect);
-      initialCanvas.centerObject(rect);
+      // const rect = new fabric.Rect({ height: 100, width: 100, fill: "black" });
+      // initialCanvas.add(rect);
+      // initialCanvas.centerObject(rect);
     },
     []
   );
