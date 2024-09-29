@@ -5,7 +5,7 @@ import { FILL_COLOR } from "../types/shapes";
 import { ToolSidebarHeader } from "./shapeSidebar/components/toolSidebarHeader";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { ToolSidebarClose } from "./shapeSidebar/components/toolSidebarClose";
-import { ColorPicker } from "./ColorPicher";
+import { ColorPicker } from "./ColorPicker";
 
 interface FillColorSidebarProps {
   editor: Editor | undefined;
