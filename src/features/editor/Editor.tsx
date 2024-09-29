@@ -8,18 +8,22 @@ import { Sidebar } from "./components/sidebar/Sidebar";
 import { Toolbar } from "./components/Toolbar";
 import { Footer } from "./components/Footer";
 import { ActiveTool } from "./types/activeTools";
+import { ShapeSidebar } from "./components/shapeSidebar/shapeSidebar";
 
 export const Editor = () => {
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
 
-  const onChangeActiveTool = useCallback((tool: ActiveTool) => {
-    if (tool === activeTool) {
-      return setActiveTool("select");
-    }
-    
-    setActiveTool(tool);
-  }, [activeTool]);
-  
+  const onChangeActiveTool = useCallback(
+    (tool: ActiveTool) => {
+      if (tool === activeTool) {
+        return setActiveTool("select");
+      }
+
+      setActiveTool(tool);
+    },
+    [activeTool]
+  );
+
   const { init } = useEditor();
 
   const canvasRef = useRef(null);
@@ -43,13 +47,15 @@ export const Editor = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <Navbar 
-      activeTool={activeTool}
-      onChangeActiveTool={onChangeActiveTool}/>
+      <Navbar activeTool={activeTool} onChangeActiveTool={onChangeActiveTool} />
       <div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex">
-        <Sidebar 
-            activeTool={activeTool}
-            onChangeActiveTool={onChangeActiveTool}
+        <Sidebar
+          activeTool={activeTool}
+          onChangeActiveTool={onChangeActiveTool}
+        />
+        <ShapeSidebar
+          activeTool={activeTool}
+          onChangeActiveTool={onChangeActiveTool}
         />
         <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
           <Toolbar />
