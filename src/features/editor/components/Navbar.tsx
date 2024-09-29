@@ -38,7 +38,7 @@ export const Navbar = ({
 }: NavbarProps) => {
   return (
     <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
-      {/* <Logo />
+      <Logo />
       <div className="w-full flex items-center gap-x-1 h-full">
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
@@ -75,7 +75,7 @@ export const Navbar = ({
         </Hint>
         <Hint label="Undo" side="bottom" sideOffset={10}>
           <Button
-            disabled={!editor?.canUndo()}
+            // disabled={!editor?.canUndo()}
             variant="ghost"
             size="icon"
             onClick={() => editor?.onUndo()}
@@ -85,7 +85,7 @@ export const Navbar = ({
         </Hint>
         <Hint label="Redo" side="bottom" sideOffset={10}>
           <Button
-            disabled={!editor?.canRedo()}
+            // disabled={!editor?.canRedo()}
             variant="ghost"
             size="icon"
             onClick={() => editor?.onRedo()}
@@ -154,7 +154,7 @@ export const Navbar = ({
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-      </div> */}
+      </div>
     </nav>
   );
 };
