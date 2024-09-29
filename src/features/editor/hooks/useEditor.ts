@@ -51,10 +51,10 @@ const buildEditor = ({
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE_OPTIONS,
-        fill: fillColor,
-        stroke: strokeColor,
-        strokeWidth: strokeWidth,
-        strokeDashArray: strokeDashArray,
+        // fill: fillColor,
+        // stroke: strokeColor,
+        // strokeWidth: strokeWidth,
+        // strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
