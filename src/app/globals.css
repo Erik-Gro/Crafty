@@ -30,7 +30,7 @@ html,
 body {
   height: 100%;
 }
-   
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -94,4 +94,15 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.circle-picker {
+  width: auto !important;
+}
+
+.chrome-picker {
+  width: auto !important;
+  box-shadow: none !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
 }

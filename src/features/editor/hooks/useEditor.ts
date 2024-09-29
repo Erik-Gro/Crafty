@@ -179,76 +179,76 @@ const buildEditor = ({
       addToCanvas(object);
     },
     canvas,
-    getActiveFontWeight: () => {
-      const selectedObject = selectedObjects[0];
+    // getActiveFontWeight: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return FONT_WEIGHT;
-      }
+    //   if (!selectedObject) {
+    //     return FONT_WEIGHT;
+    //   }
 
-      // @ts-ignore
-      const value = selectedObject.get("fontWeight") || FONT_WEIGHT;
+    //   // @ts-ignore
+    //   const value = selectedObject.get("fontWeight") || FONT_WEIGHT;
 
-      return value;
-    },
-    getActiveFontFamily: () => {
-      const selectedObject = selectedObjects[0];
+    //   return value;
+    // },
+    // getActiveFontFamily: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return fontFamily;
-      }
+    //   if (!selectedObject) {
+    //     return fontFamily;
+    //   }
 
-      // @ts-ignore
-      const value = selectedObject.get("fontFamily") || fontFamily;
+    //   // @ts-ignore
+    //   const value = selectedObject.get("fontFamily") || fontFamily;
 
-      return value;
-    },
-    getActiveFillColor: () => {
-      const selectedObject = selectedObjects[0];
+    //   return value;
+    // },
+    // getActiveFillColor: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return fillColor;
-      }
+    //   if (!selectedObject) {
+    //     return fillColor;
+    //   }
 
-      const value = selectedObject.get("fill") || fillColor;
+    //   const value = selectedObject.get("fill") || fillColor;
 
-      // Currently, gradients & patterns are not supported
-      return value as string;
-    },
-    getActiveStrokeColor: () => {
-      const selectedObject = selectedObjects[0];
+    //   // Currently, gradients & patterns are not supported
+    //   return value as string;
+    // },
+    // getActiveStrokeColor: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return strokeColor;
-      }
+    //   if (!selectedObject) {
+    //     return strokeColor;
+    //   }
 
-      const value = selectedObject.get("stroke") || strokeColor;
+    //   const value = selectedObject.get("stroke") || strokeColor;
 
-      return value;
-    },
-    getActiveStrokeWidth: () => {
-      const selectedObject = selectedObjects[0];
+    //   return value;
+    // },
+    // getActiveStrokeWidth: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return strokeWidth;
-      }
+    //   if (!selectedObject) {
+    //     return strokeWidth;
+    //   }
 
-      const value = selectedObject.get("strokeWidth") || strokeWidth;
+    //   const value = selectedObject.get("strokeWidth") || strokeWidth;
 
-      return value;
-    },
-    getActiveStrokeDashArray: () => {
-      const selectedObject = selectedObjects[0];
+    //   return value;
+    // },
+    // getActiveStrokeDashArray: () => {
+    //   const selectedObject = selectedObjects[0];
 
-      if (!selectedObject) {
-        return strokeDashArray;
-      }
+    //   if (!selectedObject) {
+    //     return strokeDashArray;
+    //   }
 
-      const value = selectedObject.get("strokeDashArray") || strokeDashArray;
+    //   const value = selectedObject.get("strokeDashArray") || strokeDashArray;
 
-      return value;
-    },
-    selectedObjects,
+    //   return value;
+    // },
+    // selectedObjects,
   };
 };
 
