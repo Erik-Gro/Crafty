@@ -69,10 +69,10 @@ const buildEditor = ({
         ...RECTANGLE_OPTIONS,
         rx: 50,
         ry: 50,
-        fill: fillColor,
-        stroke: strokeColor,
-        strokeWidth: strokeWidth,
-        strokeDashArray: strokeDashArray,
+        // fill: fillColor,
+        // stroke: strokeColor,
+        // strokeWidth: strokeWidth,
+        // strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -80,10 +80,10 @@ const buildEditor = ({
     addRectangle: () => {
       const object = new fabric.Rect({
         ...RECTANGLE_OPTIONS,
-        fill: fillColor,
-        stroke: strokeColor,
-        strokeWidth: strokeWidth,
-        strokeDashArray: strokeDashArray,
+        // fill: fillColor,
+        // stroke: strokeColor,
+        // strokeWidth: strokeWidth,
+        // strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -91,10 +91,10 @@ const buildEditor = ({
     addTriangle: () => {
       const object = new fabric.Triangle({
         ...TRIANGLE_OPTIONS,
-        fill: fillColor,
-        stroke: strokeColor,
-        strokeWidth: strokeWidth,
-        strokeDashArray: strokeDashArray,
+        // fill: fillColor,
+        // stroke: strokeColor,
+        // strokeWidth: strokeWidth,
+        // strokeDashArray: strokeDashArray,
       });
 
       addToCanvas(object);
@@ -111,10 +111,10 @@ const buildEditor = ({
         ],
         {
           ...TRIANGLE_OPTIONS,
-          fill: fillColor,
-          stroke: strokeColor,
-          strokeWidth: strokeWidth,
-          strokeDashArray: strokeDashArray,
+          // fill: fillColor,
+          // stroke: strokeColor,
+          // strokeWidth: strokeWidth,
+          // strokeDashArray: strokeDashArray,
         }
       );
 
@@ -133,10 +133,10 @@ const buildEditor = ({
         ],
         {
           ...DIAMOND_OPTIONS,
-          fill: fillColor,
-          stroke: strokeColor,
-          strokeWidth: strokeWidth,
-          strokeDashArray: strokeDashArray,
+          // fill: fillColor,
+          // stroke: strokeColor,
+          // strokeWidth: strokeWidth,
+          // strokeDashArray: strokeDashArray,
         }
       );
       addToCanvas(object);
