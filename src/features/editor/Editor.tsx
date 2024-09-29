@@ -5,7 +5,7 @@ import { useEditor } from "./hooks/useEditor";
 import { fabric } from "fabric";
 import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/sidebar/Sidebar";
-import { Toolbar } from "./components/Toolbar";
+import { Toolbar } from "./components/toolbar/Toolbar";
 import { Footer } from "./components/Footer";
 import { ActiveTool } from "./types/activeTools";
 import { ShapeSidebar } from "./components/shapeSidebar/shapeSidebar";
@@ -63,7 +63,12 @@ export const Editor = () => {
           onChangeActiveTool={onChangeActiveTool}
         />
         <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
-          <Toolbar />
+          <Toolbar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+            key={JSON.stringify(editor?.canvas.getActiveObject())}
+          />
           <div
             className="flex-1 h-[calc(100%-124px)] bg-muted"
             ref={containerRef}

@@ -6,9 +6,16 @@ import { Editor } from "../types/editor";
 import {
   CIRCLE_OPTIONS,
   DIAMOND_OPTIONS,
+  FILL_COLOR,
+  FONT_FAMILY,
   RECTANGLE_OPTIONS,
+  STROKE_COLOR,
+  STROKE_DASH_ARRAY,
+  STROKE_WIDTH,
   TRIANGLE_OPTIONS,
 } from "../types/shapes";
+import { useCanvasEvents } from "./useCanvasEvents";
+import { isTextType } from "../utils/isTextType";
 
 const buildEditor = ({
   save,
@@ -53,6 +60,35 @@ const buildEditor = ({
   };
 
   return {
+    changeStrokeColor: (value: string) => {
+      setStrokeColor(value);
+      canvas.getActiveObjects().forEach((object) => {
+        // Text types don't have stroke
+        if (isTextType(object.type)) {
+          object.set({ fill: value });
+          return;
+        }
+
+        object.set({ stroke: value });
+      });
+      canvas.freeDrawingBrush.color = value;
+      canvas.renderAll();
+    },
+    changeStrokeWidth: (value: number) => {
+      setStrokeWidth(value);
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ strokeWidth: value });
+      });
+      canvas.freeDrawingBrush.width = value;
+      canvas.renderAll();
+    },
+    changeStrokeDashArray: (value: number[]) => {
+      setStrokeDashArray(value);
+      canvas.getActiveObjects().forEach((object) => {
+        object.set({ strokeDashArray: value });
+      });
+      canvas.renderAll();
+    },
     addCircle: () => {
       const object = new fabric.Circle({
         ...CIRCLE_OPTIONS,
@@ -141,24 +177,45 @@ const buildEditor = ({
       );
       addToCanvas(object);
     },
+    canvas,
   };
 };
 
 export const useEditor = () => {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const [selectedObjects, setSelectedObjects] = useState<fabric.Object[]>([]);
+
+  const [fontFamily, setFontFamily] = useState(FONT_FAMILY);
+  const [fillColor, setFillColor] = useState(FILL_COLOR);
+  const [strokeColor, setStrokeColor] = useState(STROKE_COLOR);
+  const [strokeWidth, setStrokeWidth] = useState(STROKE_WIDTH);
+  const [strokeDashArray, setStrokeDashArray] =
+    useState<number[]>(STROKE_DASH_ARRAY);
 
   useAutoResize({ canvas, container });
+
+  useCanvasEvents({
+    canvas,
+    setSelectedObjects,
+    // clearSelectionCallback,
+  });
 
   const editor = useMemo(() => {
     if (canvas) {
       return buildEditor({
         canvas,
+        fillColor,
+        strokeWidth,
+        strokeColor,
+        setFillColor,
+        setStrokeColor,
+        setStrokeWidth,
       });
     }
 
     return undefined;
-  }, [canvas]);
+  }, [canvas, fillColor, strokeWidth, strokeColor]);
 
   const init = useCallback(
     ({
