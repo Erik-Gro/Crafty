@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Logo } from "./Logo";
 import { ActiveTool } from "../types/activeTools";
+import { Editor } from "../types/editor";
 
 interface NavbarProps {
   id: string;
@@ -37,7 +38,7 @@ export const Navbar = ({
 }: NavbarProps) => {
   return (
     <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
-      <Logo />
+      {/* <Logo />
       <div className="w-full flex items-center gap-x-1 h-full">
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
@@ -153,7 +154,7 @@ export const Navbar = ({
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 };

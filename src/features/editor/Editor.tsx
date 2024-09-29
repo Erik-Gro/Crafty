@@ -24,7 +24,7 @@ export const Editor = () => {
     [activeTool]
   );
 
-  const { init } = useEditor();
+  const { init, editor } = useEditor();
 
   const canvasRef = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,13 +47,18 @@ export const Editor = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <Navbar activeTool={activeTool} onChangeActiveTool={onChangeActiveTool} />
+      <Navbar
+        editor={editor}
+        activeTool={activeTool}
+        onChangeActiveTool={onChangeActiveTool}
+      />
       <div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex">
         <Sidebar
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />
         <ShapeSidebar
+          editor={editor}
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />

@@ -8,6 +8,7 @@ import { ActiveTool } from "../../types/activeTools";
 import { ToolSidebarHeader } from "./components/toolSidebarHeader";
 import { ShapeTool } from "./components/shapeTool";
 import { ToolSidebarClose } from "./components/toolSidebarClose";
+import { Editor } from "../../types/editor";
 
 interface ShapeSidebarProps {
   editor: Editor | undefined;
@@ -16,7 +17,7 @@ interface ShapeSidebarProps {
 }
 
 export const ShapeSidebar = ({
-  //   editor,
+  editor,
   activeTool,
   onChangeActiveTool,
 }: ShapeSidebarProps) => {
