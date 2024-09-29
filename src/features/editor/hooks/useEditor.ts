@@ -3,7 +3,12 @@ import { useCallback, useState, useMemo } from "react";
 import { useAutoResize } from "./useAutoResize";
 import { BuildEditorProps } from "../types/buildEditorProps";
 import { Editor } from "../types/editor";
-import { CIRCLE_OPTIONS } from "../types/shapes";
+import {
+  CIRCLE_OPTIONS,
+  DIAMOND_OPTIONS,
+  RECTANGLE_OPTIONS,
+  TRIANGLE_OPTIONS,
+} from "../types/shapes";
 
 const buildEditor = ({
   save,
@@ -57,6 +62,83 @@ const buildEditor = ({
         // strokeDashArray: strokeDashArray,
       });
 
+      addToCanvas(object);
+    },
+    addSoftRectangle: () => {
+      const object = new fabric.Rect({
+        ...RECTANGLE_OPTIONS,
+        rx: 50,
+        ry: 50,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
+      });
+
+      addToCanvas(object);
+    },
+    addRectangle: () => {
+      const object = new fabric.Rect({
+        ...RECTANGLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
+      });
+
+      addToCanvas(object);
+    },
+    addTriangle: () => {
+      const object = new fabric.Triangle({
+        ...TRIANGLE_OPTIONS,
+        fill: fillColor,
+        stroke: strokeColor,
+        strokeWidth: strokeWidth,
+        strokeDashArray: strokeDashArray,
+      });
+
+      addToCanvas(object);
+    },
+    addInverseTriangle: () => {
+      const HEIGHT = TRIANGLE_OPTIONS.height;
+      const WIDTH = TRIANGLE_OPTIONS.width;
+
+      const object = new fabric.Polygon(
+        [
+          { x: 0, y: 0 },
+          { x: WIDTH, y: 0 },
+          { x: WIDTH / 2, y: HEIGHT },
+        ],
+        {
+          ...TRIANGLE_OPTIONS,
+          fill: fillColor,
+          stroke: strokeColor,
+          strokeWidth: strokeWidth,
+          strokeDashArray: strokeDashArray,
+        }
+      );
+
+      addToCanvas(object);
+    },
+    addDiamond: () => {
+      const HEIGHT = DIAMOND_OPTIONS.height;
+      const WIDTH = DIAMOND_OPTIONS.width;
+
+      const object = new fabric.Polygon(
+        [
+          { x: WIDTH / 2, y: 0 },
+          { x: WIDTH, y: HEIGHT / 2 },
+          { x: WIDTH / 2, y: HEIGHT },
+          { x: 0, y: HEIGHT / 2 },
+        ],
+        {
+          ...DIAMOND_OPTIONS,
+          fill: fillColor,
+          stroke: strokeColor,
+          strokeWidth: strokeWidth,
+          strokeDashArray: strokeDashArray,
+        }
+      );
       addToCanvas(object);
     },
   };

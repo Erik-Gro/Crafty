@@ -47,6 +47,11 @@ export interface Editor {
   changeStrokeColor: (value: string) => void;
   changeStrokeDashArray: (value: number[]) => void;
   addCircle: () => void;
+  addSoftRectangle: () => void;
+  addRectangle: () => void;
+  addTriangle: () => void;
+  addInverseTriangle: () => void;
+  addDiamond: () => void;
   canvas: fabric.Canvas;
   getActiveFillColor: () => string;
   getActiveStrokeColor: () => string;
