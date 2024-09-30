@@ -6,8 +6,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Editor } from "../../types/editor";
 import { ActiveTool } from "../../types/activeTools";
 import { STROKE_DASH_ARRAY, STROKE_WIDTH } from "../../types/shapes";
-import { ToolSidebarHeader } from "./components/ToolSidebarHeader";
-import { ToolSidebarClose } from "./components/ToolSidebarClose";
+import { ToolSidebarHeader } from "../../../../components/ui/ToolSidebarHeader";
+import { ToolSidebarClose } from "../../../../components/ui/ToolSidebarClose";
 
 interface StrokeWidthSidebarProps {
   editor: Editor | undefined;
