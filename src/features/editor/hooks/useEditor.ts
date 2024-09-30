@@ -18,6 +18,7 @@ import {
 } from "../types/shapes";
 import { useCanvasEvents } from "./useCanvasEvents";
 import { isTextType } from "../utils/isTextType";
+import { EditorHookProps } from "../types/editorHookProps";
 
 const buildEditor = ({
   save,
@@ -434,7 +435,7 @@ const buildEditor = ({
   };
 };
 
-export const useEditor = () => {
+export const useEditor = ({ clearSelectionCallback }): EditorHookProps => {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [selectedObjects, setSelectedObjects] = useState<fabric.Object[]>([]);
@@ -451,7 +452,7 @@ export const useEditor = () => {
   useCanvasEvents({
     canvas,
     setSelectedObjects,
-    // clearSelectionCallback,
+    clearSelectionCallback,
   });
 
   const editor = useMemo(() => {

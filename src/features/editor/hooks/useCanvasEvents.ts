@@ -40,6 +40,6 @@ export const useCanvasEvents = ({
   }, [
     canvas,
     clearSelectionCallback,
-    setSelectedObjects, // No need for this, this is from setState
+    setSelectedObjects, // to satisfie eslint
   ]);
 };
