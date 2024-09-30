@@ -435,7 +435,7 @@ const buildEditor = ({
   };
 };
 
-export const useEditor = ({ clearSelectionCallback }): EditorHookProps => {
+export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [selectedObjects, setSelectedObjects] = useState<fabric.Object[]>([]);
@@ -463,6 +463,8 @@ export const useEditor = ({ clearSelectionCallback }): EditorHookProps => {
         strokeWidth,
         strokeColor,
         setFillColor,
+        strokeDashArray,
+        setStrokeDashArray,
         setStrokeColor,
         setStrokeWidth,
         selectedObjects,
@@ -470,7 +472,14 @@ export const useEditor = ({ clearSelectionCallback }): EditorHookProps => {
     }
 
     return undefined;
-  }, [canvas, fillColor, strokeWidth, strokeColor, selectedObjects]);
+  }, [
+    canvas,
+    fillColor,
+    strokeWidth,
+    strokeColor,
+    selectedObjects,
+    strokeDashArray,
+  ]);
 
   const init = useCallback(
     ({
