@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import { ActiveTool } from "../types/activeTools";
 import { Editor } from "../types/editor";
 import { FILL_COLOR } from "../types/shapes";
-import { ToolSidebarHeader } from "./shapeSidebar/components/toolSidebarHeader";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ToolSidebarClose } from "./shapeSidebar/components/toolSidebarClose";
 import { ColorPicker } from "./ColorPicker";
+import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
+import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 
 interface FillColorSidebarProps {
   editor: Editor | undefined;
