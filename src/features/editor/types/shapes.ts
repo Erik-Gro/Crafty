@@ -47,3 +47,12 @@ export const TRIANGLE_OPTIONS = {
   height: 400,
   angle: 0,
 };
+
+export const TEXT_OPTIONS = {
+  type: "textbox",
+  left: 100,
+  top: 100,
+  fill: FILL_COLOR,
+  fontSize: FONT_SIZE,
+  fontFamily: FONT_FAMILY,
+};
