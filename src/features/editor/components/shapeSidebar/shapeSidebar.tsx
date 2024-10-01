@@ -5,10 +5,10 @@ import { FaCircle, FaSquare, FaSquareFull } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ActiveTool } from "../../types/activeTools";
-import { ToolSidebarHeader } from "./components/toolSidebarHeader";
 import { ShapeTool } from "./components/shapeTool";
-import { ToolSidebarClose } from "./components/toolSidebarClose";
 import { Editor } from "../../types/editor";
+import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
+import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 
 interface ShapeSidebarProps {
   editor: Editor | undefined;
