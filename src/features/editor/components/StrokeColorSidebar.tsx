@@ -3,9 +3,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
 import { STROKE_COLOR } from "../types/shapes";
-import { ToolSidebarHeader } from "./shapeSidebar/components/toolSidebarHeader";
 import { ColorPicker } from "./ColorPicker";
-import { ToolSidebarClose } from "./shapeSidebar/components/toolSidebarClose";
+import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
+import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 
 interface StrokeColorSidebarProps {
   editor: Editor | undefined;
