@@ -23,7 +23,7 @@ import { ActiveTool } from "../../types/activeTools";
 import { Editor } from "../../types/editor";
 import { FONT_SIZE, FONT_WEIGHT } from "../../types/shapes";
 import { isTextType } from "../../utils/isTextType";
-import { FontSizeInput } from "./components/fontSizeInput";
+import { FontSizeInput } from "./components/FontSizeInput";
 
 interface ToolbarProps {
   editor: Editor | undefined;
