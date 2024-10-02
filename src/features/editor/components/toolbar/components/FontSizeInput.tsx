@@ -6,20 +6,19 @@ import { Button } from "@/components/ui/button";
 interface FontSizeInputProps {
   value: number;
   onChange: (value: number) => void;
-};
+}
 
-export const FontSizeInput = ({
-  value,
-  onChange,
-}: FontSizeInputProps) => {
+export const FontSizeInput = ({ value, onChange }: FontSizeInputProps) => {
   const increment = () => onChange(value + 1);
   const decrement = () => onChange(value - 1);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = parseInt(e.target.value, 10);
-    onChange(value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const parsedValue = inputValue === "" ? 0 : parseInt(inputValue, 10);
+
+    if (!isNaN(parsedValue)) {
+      onChange(parsedValue);
+    }
   };
 
   return (
