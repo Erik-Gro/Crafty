@@ -478,6 +478,8 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
         setStrokeColor,
         setStrokeWidth,
         selectedObjects,
+        fontFamily,
+        setFontFamily,
       });
     }
 
@@ -489,6 +491,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
     strokeColor,
     selectedObjects,
     strokeDashArray,
+    fontFamily,
   ]);
 
   const init = useCallback(
