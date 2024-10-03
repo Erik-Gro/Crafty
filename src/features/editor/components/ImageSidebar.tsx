@@ -9,6 +9,7 @@ import { useGetImages } from "@/features/images/api/useGetImages";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 import { cn } from "@/lib/utils";
+import { UploadButton } from "@/lib/uploadthing";
 
 interface ImageSidebarProps {
   editor: Editor | undefined;
@@ -38,22 +39,21 @@ export const ImageSidebar = ({
         title="Images"
         description="Add images to your canvas"
       />
-      {/* TODO
       <div className="p-4 border-b">
         <UploadButton
           appearance={{
             button: "w-full text-sm font-medium",
-            allowedContent: "hidden"
+            allowedContent: "hidden",
           }}
           content={{
-            button: "Upload Image"
+            button: "Upload Image",
           }}
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {
             editor?.addImage(res[0].url);
           }}
         />
-      </div> */}
+      </div>
       {isLoading && (
         <div className="flex items-center justify-center flex-1">
           <Loader className="size-4 text-muted-foreground animate-spin" />
