@@ -4,22 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
-import { fonts } from "../data/fonts";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 
-interface FontSidebarProps {
+interface FilterSidebarProps {
   editor: Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 }
 
-export const FontSidebar = ({
+export const FilterSidebar = ({
   editor,
   activeTool,
   onChangeActiveTool,
-}: FontSidebarProps) => {
-  const value = editor?.getActiveFontFamily();
-
+}: FilterSidebarProps) => {
   const onClose = () => {
     onChangeActiveTool("select");
   };
@@ -28,29 +25,24 @@ export const FontSidebar = ({
     <aside
       className={cn(
         "bg-white relative border-r z-[40] w-[360px] h-full flex flex-col",
-        activeTool === "font" ? "visible" : "hidden"
+        activeTool === "filter" ? "visible" : "hidden"
       )}
     >
-      <ToolSidebarHeader title="Font" description="Change the text font" />
+      <ToolSidebarHeader
+        title="Filters"
+        description="Apply a filter to selected image"
+      />
       <ScrollArea>
         <div className="p-4 space-y-1 border-b">
-          {fonts.map((font) => (
+          {filters.map((filter) => (
             <Button
-              key={font}
+              key={filter}
               variant="secondary"
               size="lg"
-              className={cn(
-                "w-full h-16 justify-start text-left",
-                value === font && "border-2 border-blue-500"
-              )}
-              style={{
-                fontFamily: font,
-                fontSize: "16px",
-                padding: "8px 16px",
-              }}
-              onClick={() => editor?.changeFontFamily(font)}
+              className="w-full h-16 justify-start text-left"
+              onClick={() => editor?.changeImageFilter(filter)}
             >
-              {font}
+              {filter}
             </Button>
           ))}
         </div>

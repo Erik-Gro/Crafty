@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
-import { STROKE_COLOR } from "../types/shapes";
+import { STROKE_COLOR } from "../data/shapes";
 import { ColorPicker } from "./ColorPicker";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";

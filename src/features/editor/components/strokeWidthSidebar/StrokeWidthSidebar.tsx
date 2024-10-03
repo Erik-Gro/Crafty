@@ -5,7 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Editor } from "../../types/editor";
 import { ActiveTool } from "../../types/activeTools";
-import { STROKE_DASH_ARRAY, STROKE_WIDTH } from "../../types/shapes";
+import { STROKE_DASH_ARRAY, STROKE_WIDTH } from "../../data/shapes";
 import { ToolSidebarHeader } from "../../../../components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "../../../../components/ui/ToolSidebarClose";
 

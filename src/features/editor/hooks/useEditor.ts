@@ -16,7 +16,7 @@ import {
   STROKE_WIDTH,
   TEXT_OPTIONS,
   TRIANGLE_OPTIONS,
-} from "../types/shapes";
+} from "../data/shapes";
 import { useCanvasEvents } from "./useCanvasEvents";
 import { isTextType } from "../utils/isTextType";
 import { EditorHookProps } from "../types/editorHookProps";

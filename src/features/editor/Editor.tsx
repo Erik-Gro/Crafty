@@ -10,7 +10,7 @@ import { Footer } from "./components/Footer";
 import { ActiveTool } from "./types/activeTools";
 import { ShapeSidebar } from "./components/shapeSidebar/shapeSidebar";
 import { FillColorSidebar } from "./components/FillColorSidebar";
-import { selectionDependentTools } from "./types/selectionDependentTools";
+import { selectionDependentTools } from "./data/selectionDependentTools";
 import { StrokeColorSidebar } from "./components/StrokeColorSidebar";
 import { StrokeWidthSidebar } from "./components/strokeWidthSidebar/StrokeWidthSidebar";
 import { OpacitySidebar } from "./components/OpacitySidebar";

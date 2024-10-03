@@ -21,7 +21,7 @@ import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
 import { ActiveTool } from "../../types/activeTools";
 import { Editor } from "../../types/editor";
-import { FONT_SIZE, FONT_WEIGHT } from "../../types/shapes";
+import { FONT_SIZE, FONT_WEIGHT } from "../../data/shapes";
 import { isTextType } from "../../utils/isTextType";
 import { FontSizeInput } from "./components/FontSizeInput";
 

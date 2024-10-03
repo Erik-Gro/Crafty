@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ActiveTool } from "../types/activeTools";
 import { Editor } from "../types/editor";
-import { FILL_COLOR } from "../types/shapes";
+import { FILL_COLOR } from "../data/shapes";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { ColorPicker } from "./ColorPicker";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
