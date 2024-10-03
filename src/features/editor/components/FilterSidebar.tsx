@@ -5,6 +5,7 @@ import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
+import { filters } from "../data/filters";
 
 interface FilterSidebarProps {
   editor: Editor | undefined;

@@ -20,6 +20,7 @@ import {
 import { useCanvasEvents } from "./useCanvasEvents";
 import { isTextType } from "../utils/isTextType";
 import { EditorHookProps } from "../types/editorHookProps";
+import { createFilter } from "@/lib/createFilter";
 
 const buildEditor = ({
   save,
