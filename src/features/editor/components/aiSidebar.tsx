@@ -8,6 +8,7 @@ import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
+import { useGenerateImage } from "../ai/api/useGenerateImage";
 
 interface AiSidebarProps {
   editor: Editor | undefined;
