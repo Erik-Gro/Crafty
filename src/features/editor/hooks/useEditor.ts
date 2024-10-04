@@ -26,6 +26,7 @@ import { useHistory } from "./useHistory";
 import { JSON_KEYS } from "../data/jsonkeys";
 import { useHotkeys } from "./useHotkeys";
 import { downloadFile } from "@/lib/downLoad";
+import { transformText } from "@/lib/transformText";
 
 const buildEditor = ({
   save,
