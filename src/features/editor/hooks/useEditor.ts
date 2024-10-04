@@ -67,6 +67,8 @@ const buildEditor = ({
   };
 
   return {
+    canUndo,
+    canRedo,
     autoZoom,
     getWorkspace,
     zoomIn: () => {
