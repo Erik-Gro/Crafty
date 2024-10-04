@@ -78,10 +78,16 @@ const buildEditor = ({
   const saveSvg = () => {
     const options = generateSaveOptions();
 
-    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    const dataUrl = canvas.toDataURL(options);
+    const svgData = canvas.toSVG(options);
 
-    downloadFile(dataUrl, "svg");
+    const svgBlob = new Blob([svgData], {
+      type: "image/svg+xml;charset=utf-8",
+    });
+
+    const svgUrl = URL.createObjectURL(svgBlob);
+
+    downloadFile(svgUrl, "svg");
+
     autoZoom();
   };
 
