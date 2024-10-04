@@ -23,6 +23,7 @@ import { EditorHookProps } from "../types/editorHookProps";
 import { createFilter } from "@/lib/createFilter";
 import { useClipboard } from "./useClipboard";
 import { useHistory } from "./useHistory";
+import { JSON_KEYS } from "../data/jsonkeys";
 
 const buildEditor = ({
   save,
@@ -652,11 +653,14 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
       setCanvas(initialCanvas);
       setContainer(initialContainer);
 
-      // const rect = new fabric.Rect({ height: 100, width: 100, fill: "black" });
-      // initialCanvas.add(rect);
-      // initialCanvas.centerObject(rect);
+      const currentState = JSON.stringify(initialCanvas.toJSON(JSON_KEYS));
+      canvasHistory.current = [currentState];
+      setHistoryIndex(0);
     },
-    []
+    [
+      canvasHistory, // No need, this is from useRef
+      setHistoryIndex, // No need, this is from useState
+    ]
   );
 
   return { init, editor };
