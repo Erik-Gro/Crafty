@@ -4,8 +4,8 @@ import { handle } from "hono/vercel";
 import images from "./images";
 import ai from "./ai";
 
-// Revert to "edge" if planning on running on the edge
-export const runtime = "nodejs";
+// Revert to "nodejs" if planning on running on the nodejs
+export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
