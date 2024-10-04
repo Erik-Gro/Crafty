@@ -27,6 +27,7 @@ import { JSON_KEYS } from "../data/jsonkeys";
 import { useHotkeys } from "./useHotkeys";
 import { downloadFile } from "@/lib/downLoad";
 import { transformText } from "@/lib/transformText";
+import { useWindowEvents } from "./useWindowEvents";
 
 const buildEditor = ({
   save,
@@ -614,6 +615,8 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
   const [strokeWidth, setStrokeWidth] = useState(STROKE_WIDTH);
   const [strokeDashArray, setStrokeDashArray] =
     useState<number[]>(STROKE_DASH_ARRAY);
+
+  useWindowEvents();
 
   const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
     useHistory({
