@@ -7,6 +7,7 @@ import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
+import { useRemoveBg } from "../ai/api/useRemoveBg";
 
 interface RemoveBgSidebarProps {
   editor: Editor | undefined;
