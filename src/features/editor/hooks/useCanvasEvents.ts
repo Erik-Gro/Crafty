@@ -9,12 +9,16 @@ interface UseCanvasEventsProps {
 }
 
 export const useCanvasEvents = ({
+  save,
   canvas,
   setSelectedObjects,
   clearSelectionCallback,
 }: UseCanvasEventsProps) => {
   useEffect(() => {
     if (canvas) {
+      canvas.on("object:added", () => save());
+      canvas.on("object:removed", () => save());
+      canvas.on("object:modified", () => save());
       canvas.on("selection:created", (e) => {
         setSelectedObjects(e.selected || []);
       });
@@ -38,8 +42,9 @@ export const useCanvasEvents = ({
       }
     };
   }, [
+    save,
     canvas,
     clearSelectionCallback,
-    setSelectedObjects, // to satisfie eslint
+    setSelectedObjects, // to satisfy eslint
   ]);
 };

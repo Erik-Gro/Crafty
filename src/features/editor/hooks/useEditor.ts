@@ -22,6 +22,7 @@ import { isTextType } from "../utils/isTextType";
 import { EditorHookProps } from "../types/editorHookProps";
 import { createFilter } from "@/lib/createFilter";
 import { useClipboard } from "./useClipboard";
+import { useHistory } from "./useHistory";
 
 const buildEditor = ({
   save,
@@ -91,13 +92,13 @@ const buildEditor = ({
 
       workspace?.set(value);
       autoZoom();
-      // save();
+      save();
     },
     changeBackground: (value: string) => {
       const workspace = getWorkspace();
       workspace?.set({ fill: value });
       canvas.renderAll();
-      // save();
+      save();
     },
     enableDrawingMode: () => {
       canvas.discardActiveObject();
@@ -109,6 +110,8 @@ const buildEditor = ({
     disableDrawingMode: () => {
       canvas.isDrawingMode = false;
     },
+    onUndo: () => undo(),
+    onRedo: () => redo(),
     onCopy: () => copy(),
     onPaste: () => paste(),
     changeImageFilter: (value: string) => {
@@ -539,6 +542,12 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
   const [strokeDashArray, setStrokeDashArray] =
     useState<number[]>(STROKE_DASH_ARRAY);
 
+  const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
+    useHistory({
+      canvas,
+      // saveCallback,
+    });
+
   const { copy, paste } = useClipboard({ canvas });
 
   const { autoZoom } = useAutoResize({
@@ -547,6 +556,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
   });
 
   useCanvasEvents({
+    save,
     canvas,
     setSelectedObjects,
     clearSelectionCallback,
@@ -555,6 +565,11 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
   const editor = useMemo(() => {
     if (canvas) {
       return buildEditor({
+        save,
+        canRedo,
+        canUndo,
+        undo,
+        redo,
         autoZoom,
         copy,
         paste,
@@ -575,6 +590,11 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 
     return undefined;
   }, [
+    save,
+    canRedo,
+    canUndo,
+    undo,
+    redo,
     autoZoom,
     copy,
     paste,
