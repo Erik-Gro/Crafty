@@ -66,6 +66,7 @@ const buildEditor = ({
   };
 
   return {
+    autoZoom,
     getWorkspace,
     zoomIn: () => {
       let zoomRatio = canvas.getZoom();
