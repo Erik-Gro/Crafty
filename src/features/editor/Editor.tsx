@@ -22,8 +22,25 @@ import { AiSidebar } from "./components/aiSidebar";
 import { RemoveBgSidebar } from "./components/RemoveBgSidebar";
 import { DrawSidebar } from "./components/DrawSidebar";
 import { SettingsSidebar } from "./components/SettingsSidebar";
+import { ResponseType } from "@/features/projects/api/useGetProject";
+import debounce from "lodash.debounce";
+import { useUpdateProject } from "../projects/api/useUpdateProject";
 
-export const Editor = () => {
+interface EditorProps {
+  initialData: ResponseType["data"];
+}
+
+export const Editor = ({ initialData }: EditorProps) => {
+  const { mutate } = useUpdateProject(initialData.id);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSave = useCallback(
+    debounce((values: { json: string; height: number; width: number }) => {
+      mutate(values);
+    }, 500),
+    [mutate]
+  );
+
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
 
   const onClearSelection = useCallback(() => {
@@ -33,7 +50,11 @@ export const Editor = () => {
   }, [activeTool]);
 
   const { init, editor } = useEditor({
+    defaultState: initialData.json,
+    defaultWidth: initialData.width,
+    defaultHeight: initialData.height,
     clearSelectionCallback: onClearSelection,
+    saveCallback: debouncedSave,
   });
 
   const onChangeActiveTool = useCallback(
@@ -77,6 +98,7 @@ export const Editor = () => {
   return (
     <div className="h-full flex flex-col">
       <Navbar
+        id={initialData.id}
         editor={editor}
         activeTool={activeTool}
         onChangeActiveTool={onChangeActiveTool}
@@ -126,6 +148,11 @@ export const Editor = () => {
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />
+        {/* <TemplateSidebar
+          editor={editor}
+          activeTool={activeTool}
+          onChangeActiveTool={onChangeActiveTool}
+        /> */}
         <FilterSidebar
           editor={editor}
           activeTool={activeTool}
