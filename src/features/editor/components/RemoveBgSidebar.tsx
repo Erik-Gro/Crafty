@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
-import { useRemoveBg } from "../ai/api/useRemoveBg";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
+import { useRemoveBg } from "@/features/ai/api/useRemoveBg";
 
 interface RemoveBgSidebarProps {
   editor: Editor | undefined;
