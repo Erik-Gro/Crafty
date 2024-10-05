@@ -6,7 +6,7 @@ import ai from "./ai";
 import users from "./users";
 
 // Revert to "nodejs" if planning on running on the nodejs
-export const runtime = "edge";
+export const runtime = "node.js";
 
 const app = new Hono().basePath("/api");
 

@@ -22,14 +22,12 @@ const app = new Hono().post(
 
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || "10", 10);
 
-    console.log(saltRounds);
-
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     const query = await db.select().from(users).where(eq(users.email, email));
 
     if (query[0]) {
-      return c.json({ error: "Email already in use" }, 400);
+      return c.json({ error: "Hmm, what could it be?" }, 400);
     }
 
     await db.insert(users).values({

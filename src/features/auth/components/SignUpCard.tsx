@@ -7,8 +7,6 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { TriangleAlert } from "lucide-react";
 
-// import { useSignUp } from "@/features/auth/hooks/use-sign-up";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -19,9 +17,10 @@ import {
   CardContent,
   CardDescription,
 } from "@/components/ui/card";
+import { useSignUp } from "../hooks/useSignUp";
 
 export const SignUpCard = () => {
-  //   const mutation = useSignUp();
+  const mutation = useSignUp();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,19 +33,22 @@ export const SignUpCard = () => {
   const onCredentialSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // mutation.mutate({
-    //   name,
-    //   email,
-    //   password
-    // }, {
-    //   onSuccess: () => {
-    //     signIn("credentials", {
-    //       email,
-    //       password,
-    //       callbackUrl: "/",
-    //     });
-    //   },
-    // })
+    mutation.mutate(
+      {
+        name,
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          signIn("credentials", {
+            email,
+            password,
+            callbackUrl: "/",
+          });
+        },
+      }
+    );
   };
 
   return (
@@ -57,14 +59,14 @@ export const SignUpCard = () => {
           Use your email or another service to continue
         </CardDescription>
       </CardHeader>
-      {/* {!!mutation.error && (
+      {!!mutation.error && (
         <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
           <TriangleAlert className="size-4" />
           <p>Something went wrong</p>
         </div>
-      )} */}
+      )}
       <CardContent className="space-y-5 px-0 pb-0">
-        {/* <form onSubmit={onCredentialSignUp} className="space-y-2.5">
+        <form onSubmit={onCredentialSignUp} className="space-y-2.5">
           <Input
             disabled={mutation.isPending}
             value={name}
@@ -122,7 +124,7 @@ export const SignUpCard = () => {
             <FaGithub className="mr-2 size-5 top-2.5 left-2.5 absolute" />
             Continue with Github
           </Button>
-        </div> */}
+        </div>
         <p className="text-xs text-muted-foreground">
           Already have an account?{" "}
           <Link href="/sign-in">
