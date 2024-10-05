@@ -7,6 +7,7 @@ import ai from "./ai";
 import users from "./users";
 
 import authConfig from "@/auth.config";
+import projects from "./projects";
 
 // Revert to "nodejs" if planning on running on the nodejs
 export const runtime = "nodejs";
@@ -25,7 +26,8 @@ app.use("*", initAuthConfig(getAuthConfig));
 const routes = app
   .route("/ai", ai)
   .route("/users", users)
-  .route("/images", images);
+  .route("/images", images)
+  .route("/projects", projects);
 
 export const GET = handle(app);
 export const POST = handle(app);
