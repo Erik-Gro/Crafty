@@ -23,6 +23,7 @@ import {
 import { Logo } from "./Logo";
 import { ActiveTool } from "../types/activeTools";
 import { Editor } from "../types/editor";
+import { UserButton } from "@/features/auth/components/UserButton";
 
 interface NavbarProps {
   id: string;
@@ -170,6 +171,7 @@ export const Navbar = ({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <UserButton />
         </div>
       </div>
     </nav>
