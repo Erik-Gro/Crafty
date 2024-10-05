@@ -9,12 +9,12 @@ import { Editor } from "@/features/editor/Editor";
 
 interface EditorProjectIdPageProps {
   params: {
-    projectId: string;
+    projectid: string;
   };
 }
 
 const EditorProjectIdPage = ({ params }: EditorProjectIdPageProps) => {
-  const { data, isLoading, isError } = useGetProject(params.projectId);
+  const { data, isLoading, isError } = useGetProject(params.projectid);
 
   if (isLoading || !data) {
     return (
