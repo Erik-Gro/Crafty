@@ -12,7 +12,9 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
+    "@auth/core": "^0.35.3",
     "@auth/drizzle-adapter": "^1.5.3",
+    "@hono/auth-js": "^1.0.10",
     "@hono/zod-validator": "^0.3.0",
     "@neondatabase/serverless": "^0.9.5",
     "@radix-ui/react-avatar": "^1.1.0",
@@ -30,7 +32,6 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "drizzle-zod": "^0.5.1",
     "fabric": "^5.3.0-browser",
@@ -63,6 +64,7 @@
     "@types/react": "^18",
     "@types/react-color": "^3.0.12",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
