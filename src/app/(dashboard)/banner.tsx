@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useCreateProject } from "@/features/projects/api/useCreateProject";
 
 export const Banner = () => {
   const router = useRouter();
