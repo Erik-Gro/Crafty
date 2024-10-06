@@ -23,6 +23,16 @@ export const useAutoResize = ({ canvas, container }: UseAutoResizeProps) => {
       .getObjects()
       .find((object) => object.name === "clip");
 
+    //since when i added this the error stoped to appear so it might be that was caused by cache or something else not related with the code
+    //if you see this error in prodaction - please contact erik.gro@proton.me
+    if (!localWorkspace) {
+      console.log("Local workspace not found");
+      console.log(
+        "if you see this error in prodaction - please contact erik.gro@proton.me"
+      );
+      return;
+    }
+
     // @ts-ignore
     const scale = fabric.util.findScaleToFit(localWorkspace, {
       width: width,

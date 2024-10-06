@@ -8,6 +8,7 @@ import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 import { useRemoveBg } from "@/features/ai/api/useRemoveBg";
+import { usePaywall } from "@/features/subscriptions/hooks/usePaywall";
 
 interface RemoveBgSidebarProps {
   editor: Editor | undefined;
@@ -20,7 +21,7 @@ export const RemoveBgSidebar = ({
   activeTool,
   onChangeActiveTool,
 }: RemoveBgSidebarProps) => {
-  // const { shouldBlock, triggerPaywall } = usePaywall();
+  const { shouldBlock, triggerPaywall } = usePaywall();
   const mutation = useRemoveBg();
 
   const selectedObject = editor?.selectedObjects[0];
@@ -33,10 +34,10 @@ export const RemoveBgSidebar = ({
   };
 
   const onClick = () => {
-    // if (shouldBlock) {
-    //   triggerPaywall();
-    //   return;
-    // }
+    if (shouldBlock) {
+      triggerPaywall();
+      return;
+    }
 
     mutation.mutate(
       {

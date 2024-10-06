@@ -29,6 +29,7 @@ declare module "@auth/core/jwt" {
 }
 
 export default {
+  trustHost: true,
   adapter: DrizzleAdapter(db),
   providers: [
     Credentials({

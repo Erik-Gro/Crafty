@@ -12,6 +12,7 @@ import {
 } from "@/features/projects/api/useGetTemplates";
 import { Editor } from "../types/editor";
 import { ActiveTool } from "../types/activeTools";
+import { usePaywall } from "@/features/subscriptions/hooks/usePaywall";
 
 interface TemplateSidebarProps {
   editor: Editor | undefined;
@@ -24,7 +25,7 @@ export const TemplateSidebar = ({
   activeTool,
   onChangeActiveTool,
 }: TemplateSidebarProps) => {
-  //   const { shouldBlock, triggerPaywall } = usePaywall();
+  const { shouldBlock, triggerPaywall } = usePaywall();
 
   const [ConfirmDialog, confirm] = useConfirm(
     "Are you sure?",
@@ -41,10 +42,10 @@ export const TemplateSidebar = ({
   };
 
   const onClick = async (template: ResponseType["data"][0]) => {
-    // if (template.isPro && shouldBlock) {
-    //   triggerPaywall();
-    //   return;
-    // }
+    if (template.isPro && shouldBlock) {
+      triggerPaywall();
+      return;
+    }
 
     const ok = await confirm();
 

@@ -43,6 +43,7 @@
     "material-colors": "^1.2.6",
     "next": "14.2.13",
     "next-auth": "^5.0.0-beta.22",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-color": "^2.19.3",
     "react-dom": "^18",
@@ -50,13 +51,15 @@
     "react-use": "^17.5.1",
     "replicate": "^0.34.1",
     "sonner": "^1.5.0",
+    "stripe": "^17.1.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "unsplash-js": "^7.0.19",
     "uploadthing": "^7.0.2",
     "use-file-picker": "^2.1.2",
     "uuidv4": "^6.2.13",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

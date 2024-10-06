@@ -8,7 +8,7 @@ interface SidebarItemProps {
   label: string;
   href: string;
   isActive?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 export const SidebarItem = ({

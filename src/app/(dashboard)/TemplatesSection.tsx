@@ -9,9 +9,10 @@ import {
 } from "@/features/projects/api/useGetTemplates";
 import { useCreateProject } from "@/features/projects/api/useCreateProject";
 import { TemplateCard } from "./TemplateCard";
+import { usePaywall } from "@/features/subscriptions/hooks/usePaywall";
 
 export const TemplatesSection = () => {
-  // const { shouldBlock, triggerPaywall } = usePaywall();
+  const { shouldBlock, triggerPaywall } = usePaywall();
   const router = useRouter();
   const mutation = useCreateProject();
 
@@ -21,10 +22,10 @@ export const TemplatesSection = () => {
   });
 
   const onClick = (template: ResponseType["data"][0]) => {
-    // if (template.isPro && shouldBlock) {
-    //   triggerPaywall();
-    //   return;
-    // }
+    if (template.isPro && shouldBlock) {
+      triggerPaywall();
+      return;
+    }
 
     mutation.mutate(
       {

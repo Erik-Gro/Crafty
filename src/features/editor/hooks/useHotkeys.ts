@@ -35,7 +35,7 @@ export const useHotkeys = ({
           obj.setCoords();
         }
       });
-
+      save();
       canvas?.renderAll();
     },
     [canvas]

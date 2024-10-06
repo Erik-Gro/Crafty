@@ -9,6 +9,7 @@ import { ActiveTool } from "../types/activeTools";
 import { ToolSidebarHeader } from "@/components/ui/ToolSidebarHeader";
 import { ToolSidebarClose } from "@/components/ui/ToolSidebarClose";
 import { useGenerateImage } from "@/features/ai/api/useGenerateImage";
+import { usePaywall } from "@/features/subscriptions/hooks/usePaywall";
 
 interface AiSidebarProps {
   editor: Editor | undefined;
@@ -21,8 +22,7 @@ export const AiSidebar = ({
   activeTool,
   onChangeActiveTool,
 }: AiSidebarProps) => {
-  //  To be added
-  //   const { shouldBlock, triggerPaywall } = usePaywall();
+  const { shouldBlock, triggerPaywall } = usePaywall();
   const mutation = useGenerateImage();
 
   const [value, setValue] = useState("");
@@ -30,10 +30,10 @@ export const AiSidebar = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // if (shouldBlock) {
-    //   triggerPaywall();
-    //   return;
-    // }
+    if (shouldBlock) {
+      triggerPaywall();
+      return;
+    }
 
     mutation.mutate(
       { prompt: value },
