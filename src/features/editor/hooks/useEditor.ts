@@ -206,6 +206,7 @@ const buildEditor = ({
           imageObject.filters = effect ? [effect] : [];
           imageObject.applyFilters();
           canvas.renderAll();
+          save();
         }
       });
     },
@@ -259,6 +260,7 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     getActiveFontSize: () => {
       const selectedObject = selectedObjects[0];
@@ -282,6 +284,7 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     getActiveTextAlign: () => {
       const selectedObject = selectedObjects[0];
@@ -305,6 +308,7 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     getActiveFontUnderline: () => {
       const selectedObject = selectedObjects[0];
@@ -328,6 +332,7 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     getActiveFontLinethrough: () => {
       const selectedObject = selectedObjects[0];
@@ -351,6 +356,7 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     getActiveFontStyle: () => {
       const selectedObject = selectedObjects[0];
@@ -374,12 +380,14 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     changeOpacity: (value: number) => {
       canvas.getActiveObjects().forEach((object) => {
         object.set({ opacity: value });
       });
       canvas.renderAll();
+      save();
     },
     bringForward: () => {
       canvas.getActiveObjects().forEach((object) => {
@@ -390,6 +398,7 @@ const buildEditor = ({
 
       const workspace = getWorkspace();
       workspace?.sendToBack();
+      save();
     },
     sendBackwards: () => {
       canvas.getActiveObjects().forEach((object) => {
@@ -399,6 +408,7 @@ const buildEditor = ({
       canvas.renderAll();
       const workspace = getWorkspace();
       workspace?.sendToBack();
+      save();
     },
     changeFontFamily: (value: string) => {
       setFontFamily(value);
@@ -410,13 +420,13 @@ const buildEditor = ({
         }
       });
       canvas.renderAll();
+      save();
     },
     changeFillColor: (value: string) => {
       setFillColor(value);
       canvas.getActiveObjects().forEach((object) => {
         object.set({ fill: value });
       });
-      //might needs to be revised to not call save() because background in settings is saved without it
       save();
       canvas.renderAll();
     },
@@ -433,6 +443,7 @@ const buildEditor = ({
       });
       canvas.freeDrawingBrush.color = value;
       canvas.renderAll();
+      save();
     },
     changeStrokeWidth: (value: number) => {
       setStrokeWidth(value);
@@ -441,6 +452,7 @@ const buildEditor = ({
       });
       canvas.freeDrawingBrush.width = value;
       canvas.renderAll();
+      save();
     },
     changeStrokeDashArray: (value: number[]) => {
       setStrokeDashArray(value);
@@ -448,6 +460,7 @@ const buildEditor = ({
         object.set({ strokeDashArray: value });
       });
       canvas.renderAll();
+      save();
     },
     addCircle: () => {
       const object = new fabric.Circle({
