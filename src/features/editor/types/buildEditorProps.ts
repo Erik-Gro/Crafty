@@ -10,6 +10,8 @@ export type BuildEditorProps = {
   canvas: fabric.Canvas;
   fillColor: string;
   strokeColor: string;
+  moveStep: number;
+  setMoveStep: React.Dispatch<React.SetStateAction<number>>;
   strokeWidth: number;
   selectedObjects: fabric.Object[];
   strokeDashArray: number[];

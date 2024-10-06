@@ -42,6 +42,8 @@ const buildEditor = ({
   canvas,
   fillColor,
   fontFamily,
+  moveStep,
+  setMoveStep,
   setFontFamily,
   setFillColor,
   strokeColor,
@@ -261,6 +263,12 @@ const buildEditor = ({
       });
       canvas.renderAll();
       save();
+    },
+    changeStep: (value: number) => {
+      setMoveStep(value);
+    },
+    getActiveStep: () => {
+      return moveStep;
     },
     getActiveFontSize: () => {
       const selectedObject = selectedObjects[0];
@@ -642,6 +650,7 @@ export const useEditor = ({
   const [selectedObjects, setSelectedObjects] = useState<fabric.Object[]>([]);
 
   const [fontFamily, setFontFamily] = useState(FONT_FAMILY);
+  const [moveStep, setMoveStep] = useState<number>(1.5);
   const [fillColor, setFillColor] = useState(FILL_COLOR);
   const [strokeColor, setStrokeColor] = useState(STROKE_COLOR);
   const [strokeWidth, setStrokeWidth] = useState(STROKE_WIDTH);
@@ -671,6 +680,7 @@ export const useEditor = ({
   });
 
   useHotkeys({
+    moveStep,
     undo,
     redo,
     copy,
@@ -702,6 +712,8 @@ export const useEditor = ({
         fillColor,
         strokeWidth,
         strokeColor,
+        moveStep,
+        setMoveStep,
         setFillColor,
         strokeDashArray,
         setStrokeDashArray,
@@ -725,6 +737,7 @@ export const useEditor = ({
     paste,
     canvas,
     fillColor,
+    moveStep,
     strokeWidth,
     strokeColor,
     selectedObjects,

@@ -33,6 +33,8 @@ export interface Editor {
   getActiveFontLinethrough: () => boolean;
   changeFontStyle: (value: string) => void;
   getActiveFontStyle: () => string;
+  changeStep: (value: number) => void;
+  getActiveStep: () => number;
   changeFontWeight: (value: number) => void;
   getActiveFontWeight: () => number;
   getActiveFontFamily: () => string;

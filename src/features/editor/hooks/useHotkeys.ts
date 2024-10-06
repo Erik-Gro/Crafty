@@ -9,6 +9,7 @@ interface UseHotkeysProps {
   save: (skip?: boolean) => void;
   copy: () => void;
   paste: () => void;
+  moveStep: number;
 }
 
 export const useHotkeys = ({
@@ -18,10 +19,12 @@ export const useHotkeys = ({
   save,
   copy,
   paste,
+  moveStep,
 }: UseHotkeysProps) => {
-  const moveStep = 2.5;
+  console.log(moveStep);
   const moveObjects = useCallback(
     (dx: number, dy: number) => {
+      console.log(dx, dy);
       const activeObjects = canvas?.getActiveObjects();
       if (!activeObjects) return;
 

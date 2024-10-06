@@ -24,6 +24,7 @@ import { Editor } from "../../types/editor";
 import { FONT_SIZE, FONT_WEIGHT } from "../../data/shapes";
 import { isTextType } from "../../utils/isTextType";
 import { FontSizeInput } from "./components/FontSizeInput";
+import { StepSidebar } from "../StepSidebar";
 
 interface ToolbarProps {
   editor: Editor | undefined;
@@ -45,6 +46,7 @@ export const Toolbar = ({
   const initialFontUnderline = editor?.getActiveFontUnderline();
   const initialTextAlign = editor?.getActiveTextAlign();
   const initialFontSize = editor?.getActiveFontSize() || FONT_SIZE;
+  const initialStep = editor?.getActiveStep() || 1.5;
 
   const [properties, setProperties] = useState({
     fillColor: initialFillColor,
@@ -56,6 +58,7 @@ export const Toolbar = ({
     fontUnderline: initialFontUnderline,
     textAlign: initialTextAlign,
     fontSize: initialFontSize,
+    step: initialStep,
   });
 
   const selectedObject = editor?.selectedObjects[0];
@@ -73,6 +76,14 @@ export const Toolbar = ({
     setProperties((current) => ({
       ...current,
       fontSize: value,
+    }));
+  };
+
+  const onChangeStep = (value: number) => {
+    editor?.changeStep(value);
+    setProperties((current) => ({
+      ...current,
+      step: value,
     }));
   };
 
@@ -320,13 +331,20 @@ export const Toolbar = ({
         </div>
       )}
       {isText && (
-        <div className="flex items-center h-full justify-center">
-          <FontSizeInput
-            value={properties.fontSize}
-            onChange={onChangeFontSize}
-          />
-        </div>
+        <Hint label="Change font size" side="bottom" sideOffset={5}>
+          <div className="flex items-center h-full justify-center">
+            <FontSizeInput
+              value={properties.fontSize}
+              onChange={onChangeFontSize}
+            />
+          </div>
+        </Hint>
       )}
+      <Hint label="Change arrow key step" side="bottom" sideOffset={5}>
+        <div className="flex items-center h-full justify-center">
+          <StepSidebar value={properties.step} onChange={onChangeStep} />
+        </div>
+      </Hint>
       {isImage && (
         <div className="flex items-center h-full justify-center">
           <Hint label="Filters" side="bottom" sideOffset={5}>
