@@ -37,7 +37,7 @@ export const Editor = ({ initialData }: EditorProps) => {
   const debouncedSave = useCallback(
     debounce((values: { json: string; height: number; width: number }) => {
       mutate(values);
-    }, 500),
+    }, 1500),
     [mutate]
   );
 
