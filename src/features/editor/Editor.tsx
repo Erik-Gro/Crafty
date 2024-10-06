@@ -25,6 +25,7 @@ import { SettingsSidebar } from "./components/SettingsSidebar";
 import { ResponseType } from "@/features/projects/api/useGetProject";
 import debounce from "lodash.debounce";
 import { useUpdateProject } from "../projects/api/useUpdateProject";
+import { TemplateSidebar } from "./components/TemplateSidebar";
 
 interface EditorProps {
   initialData: ResponseType["data"];
@@ -148,11 +149,11 @@ export const Editor = ({ initialData }: EditorProps) => {
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />
-        {/* <TemplateSidebar
+        <TemplateSidebar
           editor={editor}
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
-        /> */}
+        />
         <FilterSidebar
           editor={editor}
           activeTool={activeTool}
