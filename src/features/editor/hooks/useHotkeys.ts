@@ -1,4 +1,5 @@
 import { fabric } from "fabric";
+import { useCallback } from "react";
 import { useEvent } from "react-use";
 
 interface UseHotkeysProps {
@@ -18,6 +19,27 @@ export const useHotkeys = ({
   copy,
   paste,
 }: UseHotkeysProps) => {
+  const moveStep = 2.5;
+  const moveObjects = useCallback(
+    (dx: number, dy: number) => {
+      const activeObjects = canvas?.getActiveObjects();
+      if (!activeObjects) return;
+
+      activeObjects.forEach((obj) => {
+        if (obj) {
+          obj.set({
+            left: (obj.left ?? 0) + dx,
+            top: (obj.top ?? 0) + dy,
+          });
+          obj.setCoords();
+        }
+      });
+
+      canvas?.renderAll();
+    },
+    [canvas]
+  );
+
   useEvent("keydown", (event) => {
     const isCtrlKey = event.ctrlKey || event.metaKey;
     const isBackspace = event.key === "Backspace";
@@ -69,6 +91,24 @@ export const useHotkeys = ({
         new fabric.ActiveSelection(allObjects, { canvas })
       );
       canvas?.renderAll();
+    }
+    switch (event.key) {
+      case "ArrowUp":
+        event.preventDefault();
+        moveObjects(0, -moveStep);
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        moveObjects(0, moveStep);
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        moveObjects(-moveStep, 0);
+        break;
+      case "ArrowRight":
+        event.preventDefault();
+        moveObjects(moveStep, 0);
+        break;
     }
   });
 };
