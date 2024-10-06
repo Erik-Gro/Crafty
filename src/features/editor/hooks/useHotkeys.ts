@@ -21,10 +21,8 @@ export const useHotkeys = ({
   paste,
   moveStep,
 }: UseHotkeysProps) => {
-  console.log(moveStep);
   const moveObjects = useCallback(
     (dx: number, dy: number) => {
-      console.log(dx, dy);
       const activeObjects = canvas?.getActiveObjects();
       if (!activeObjects) return;
 
