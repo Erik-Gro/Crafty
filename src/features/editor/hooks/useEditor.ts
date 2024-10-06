@@ -416,6 +416,8 @@ const buildEditor = ({
       canvas.getActiveObjects().forEach((object) => {
         object.set({ fill: value });
       });
+      //might needs to be revised to not call save() because background in settings is saved without it
+      save();
       canvas.renderAll();
     },
     changeStrokeColor: (value: string) => {
