@@ -131,11 +131,13 @@ const app = new Hono()
     }
 
     if (event.type === "invoice.payment_succeeded") {
+      const invoice = event.data.object as Stripe.Invoice;
+
       const subscription = await stripe.subscriptions.retrieve(
-        session.subscription as string
+        invoice.subscription as string
       );
 
-      if (!session?.metadata?.userId) {
+      if (!subscription?.metadata?.userId) {
         return c.json({ error: "Invalid session" }, 400);
       }
 
@@ -146,7 +148,7 @@ const app = new Hono()
           currentPeriodEnd: new Date(subscription.current_period_end * 1000),
           updatedAt: new Date(),
         })
-        .where(eq(subscriptions.id, subscription.id));
+        .where(eq(subscriptions.subscriptionId, subscription.id));
     }
 
     return c.json(null, 200);
