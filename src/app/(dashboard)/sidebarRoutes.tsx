@@ -19,7 +19,7 @@ export const SidebarRoutes = () => {
   const pathname = usePathname();
 
   const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (shouldBlock) {
       triggerPaywall();
       return;
