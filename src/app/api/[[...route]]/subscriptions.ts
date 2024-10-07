@@ -133,12 +133,19 @@ const app = new Hono()
     if (event.type === "invoice.payment_succeeded") {
       const invoice = event.data.object as Stripe.Invoice;
 
-      const subscription = await stripe.subscriptions.retrieve(
-        invoice.subscription as string
-      );
+      const subscriptionId = invoice.subscription as string;
 
-      if (!subscription?.metadata?.userId) {
-        return c.json({ error: "Invalid session" }, 400);
+      if (!subscriptionId) {
+        return c.json(
+          { error: "Invalid invoice, missing subscription ID" },
+          400
+        );
+      }
+
+      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+
+      if (!subscription.metadata?.userId) {
+        return c.json({ error: "Invalid subscription metadata" }, 400);
       }
 
       await db
