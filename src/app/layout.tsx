@@ -22,6 +22,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Crafty",
   description: "Crafty by Eric Gro",
+  icons: {
+    icon: "CraftyLogo",
+  },
 };
 
 export default async function RootLayout({
