@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "Crafty",
   description: "Crafty by Eric Gro",
   icons: {
-    icon: "CraftyLogo",
+    icon: "CraftyLogo.png",
   },
 };
 
