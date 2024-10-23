@@ -2,16 +2,20 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface HintModalProps {
-  onClose: () => void;
+  setShow: (show: boolean) => void;
 }
 
-const HintModal: React.FC<HintModalProps> = ({ onClose }) => {
+const HintModal: React.FC<HintModalProps> = ({ setShow }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
   const [copyStatus, setCopyStatus] = useState<string>("");
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   const handleMouseMove = (e: MouseEvent) => {
     const xPos = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -181,7 +185,7 @@ const HintModal: React.FC<HintModalProps> = ({ onClose }) => {
         </div>
 
         <button
-          onClick={onClose}
+          onClick={() => setShow(false)}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
         >
           &#10005;
