@@ -5,8 +5,8 @@ import { Providers } from "@/components/providers";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import { Modals } from "@/components/Modals";
 import { SubscriptionAlert } from "@/features/subscriptions/components/SubscriptionAlert";
+import { Modals } from "@/components/Modals";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
