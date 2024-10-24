@@ -104,10 +104,10 @@ const buildEditor = ({
     autoZoom();
   };
 
-  const saveJson = async () => {
+  const saveJson = () => {
     const dataUrl = canvas.toJSON(JSON_KEYS);
 
-    await transformText(dataUrl.objects);
+    transformText(dataUrl.objects);
     const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
       JSON.stringify(dataUrl, null, "\t")
     )}`;
