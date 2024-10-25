@@ -753,15 +753,15 @@ export const useEditor = ({
       initialCanvas: fabric.Canvas;
       initialContainer: HTMLDivElement;
     }) => {
-      fabric.Object.prototype.set({
-        cornerColor: "#FFF",
-        cornerStyle: "circle",
-        borderColor: "#3b82f6",
-        borderScaleFactor: 1.5,
-        transparentCorners: false,
-        borderOpacityWhenMoving: 1,
-        cornerStrokeColor: "#3b82f6",
-      });
+      // fabric.Object.prototype.set({
+      //   cornerColor: "#FFF",
+      //   cornerStyle: "circle",
+      //   borderColor: "#3b82f6",
+      //   borderScaleFactor: 1.5,
+      //   transparentCorners: false,
+      //   borderOpacityWhenMoving: 1,
+      //   cornerStrokeColor: "#3b82f6",
+      // });
 
       const initialWorkspace = new fabric.Rect({
         width: initialWidth.current,
