@@ -18,7 +18,19 @@ export const useCanvasEvents = ({
     if (canvas) {
       canvas.on("object:added", () => save());
       canvas.on("object:removed", () => save());
-      canvas.on("object:modified", () => save());
+      canvas.on("object:modified", (e) => {
+        const obj = e.target;
+        // @ts-ignore
+        const currentWidth = obj.width * obj.scaleX;
+        // @ts-ignore
+        const currentHeight = obj.height * obj.scaleY;
+
+        console.log(
+          `Current Width: ${currentWidth}, Current Height: ${currentHeight}`
+        );
+        save();
+      });
+
       canvas.on("selection:created", (e) => {
         setSelectedObjects(e.selected || []);
       });
@@ -28,6 +40,58 @@ export const useCanvasEvents = ({
       canvas.on("selection:cleared", () => {
         setSelectedObjects([]);
         clearSelectionCallback?.();
+      });
+
+      canvas.on("object:moving", (e) => {
+        const obj = e.target;
+        if (!obj || !canvas.clipPath) return;
+
+        const clipRect = canvas.clipPath as fabric.Rect;
+        const snapDistance = 20;
+
+        const objLeft = obj.left ?? 0;
+        const objTop = obj.top ?? 0;
+        // @ts-ignore
+        const currentWidth = obj.width * obj.scaleX; // Calculate current width
+        // @ts-ignore
+        const currentHeight = obj.height * obj.scaleY; // Calculate current height
+
+        const clipLeft = clipRect.left ?? 0;
+        // @ts-ignore
+        const clipRight = clipRect.left + (clipRect.width ?? 0); // Right edge
+        const clipTop = clipRect.top ?? 0;
+        // @ts-ignore
+        const clipBottom = clipRect.top + (clipRect.height ?? 0); // Bottom edge
+
+        // Snap to left
+        if (objLeft < clipLeft + snapDistance && objLeft > clipLeft) {
+          obj.set({ left: clipLeft });
+          return;
+        }
+
+        // Snap to right
+        if (
+          objLeft + currentWidth > clipRight - snapDistance &&
+          objLeft + currentWidth < clipRight
+        ) {
+          obj.set({ left: clipRight - currentWidth });
+          return;
+        }
+
+        // Snap to top
+        if (objTop < clipTop + snapDistance && objTop > clipTop) {
+          obj.set({ top: clipTop });
+          return;
+        }
+
+        // Snap to bottom
+        if (
+          objTop + currentHeight > clipBottom - snapDistance &&
+          objTop + currentHeight < clipBottom
+        ) {
+          obj.set({ top: clipBottom - currentHeight });
+          return;
+        }
       });
     }
 
@@ -39,14 +103,10 @@ export const useCanvasEvents = ({
         canvas.off("selection:created");
         canvas.off("selection:updated");
         canvas.off("selection:cleared");
+        canvas.off("object:moving"); // Clean up the object:moving event
       }
     };
-  }, [
-    save,
-    canvas,
-    clearSelectionCallback,
-    setSelectedObjects, // to satisfy eslint
-  ]);
+  }, [save, canvas, clearSelectionCallback, setSelectedObjects]);
 };
 
 // canvas.on("object:moving", function (event) {
