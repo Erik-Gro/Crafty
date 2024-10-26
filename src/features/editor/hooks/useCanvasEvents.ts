@@ -28,9 +28,9 @@ export const useCanvasEvents = ({
         const currentWidth = (obj.width ?? 0) * (obj.scaleX ?? 1);
         const currentHeight = (obj.height ?? 0) * (obj.scaleY ?? 1);
 
-        console.log(
-          `Current Width: ${currentWidth}, Current Height: ${currentHeight}`
-        );
+        // console.log(
+        //   `Current Width: ${currentWidth}, Current Height: ${currentHeight}`
+        // );
 
         save();
       });
