@@ -67,7 +67,6 @@ export const useCanvasEvents = ({
         // Snap to left
         if (objLeft < clipLeft + snapDistance && objLeft > clipLeft) {
           obj.set({ left: clipLeft });
-          return;
         }
 
         // Snap to right
@@ -76,13 +75,11 @@ export const useCanvasEvents = ({
           objLeft + currentWidth < clipRight
         ) {
           obj.set({ left: clipRight - currentWidth });
-          return;
         }
 
         // Snap to top
         if (objTop < clipTop + snapDistance && objTop > clipTop) {
           obj.set({ top: clipTop });
-          return;
         }
 
         // Snap to bottom
@@ -91,7 +88,6 @@ export const useCanvasEvents = ({
           objTop + currentHeight < clipBottom
         ) {
           obj.set({ top: clipBottom - currentHeight });
-          return;
         }
       });
     }
