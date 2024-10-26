@@ -20,14 +20,18 @@ export const useCanvasEvents = ({
       canvas.on("object:removed", () => save());
       canvas.on("object:modified", (e) => {
         const obj = e.target;
-        // @ts-ignore
-        const currentWidth = obj.width * obj.scaleX;
-        // @ts-ignore
-        const currentHeight = obj.height * obj.scaleY;
+
+        // Check if obj is defined
+        if (!obj) return;
+
+        // Use optional chaining and default values for width and scale
+        const currentWidth = (obj.width ?? 0) * (obj.scaleX ?? 1);
+        const currentHeight = (obj.height ?? 0) * (obj.scaleY ?? 1);
 
         console.log(
           `Current Width: ${currentWidth}, Current Height: ${currentHeight}`
         );
+
         save();
       });
 
@@ -51,17 +55,14 @@ export const useCanvasEvents = ({
 
         const objLeft = obj.left ?? 0;
         const objTop = obj.top ?? 0;
-        // @ts-ignore
-        const currentWidth = obj.width * obj.scaleX; // Calculate current width
-        // @ts-ignore
-        const currentHeight = obj.height * obj.scaleY; // Calculate current height
+
+        const currentWidth = (obj.width ?? 0) * (obj.scaleX ?? 1);
+        const currentHeight = (obj.height ?? 0) * (obj.scaleY ?? 1);
 
         const clipLeft = clipRect.left ?? 0;
-        // @ts-ignore
-        const clipRight = clipRect.left + (clipRect.width ?? 0); // Right edge
+        const clipRight = (clipRect.left ?? 0) + (clipRect.width ?? 0); // Right edge
         const clipTop = clipRect.top ?? 0;
-        // @ts-ignore
-        const clipBottom = clipRect.top + (clipRect.height ?? 0); // Bottom edge
+        const clipBottom = (clipRect.top ?? 0) + (clipRect.height ?? 0); // Bottom edge
 
         // Snap to left
         if (objLeft < clipLeft + snapDistance && objLeft > clipLeft) {
