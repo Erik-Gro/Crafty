@@ -104,52 +104,55 @@ const app = new Hono()
         process.env.STRIPE_WEBHOOK_SECRET!
       );
     } catch (error) {
+      console.error("Webhook signature verification failed:", error);
       return c.json({ error: "Invalid signature" }, 400);
     }
 
     const session = event.data.object as Stripe.Checkout.Session;
 
-    if (event.type === "checkout.session.completed") {
-      const subscription = await stripe.subscriptions.retrieve(
-        session.subscription as string
-      );
+    try {
+      if (event.type === "checkout.session.completed") {
+        const subscription = await stripe.subscriptions.retrieve(
+          session.subscription as string
+        );
 
-      if (!session?.metadata?.userId) {
-        return c.json({ error: "Invalid session" }, 400);
-      }
+        if (!session?.metadata?.userId) {
+          return c.json({ error: "Invalid session" }, 400);
+        }
 
-      await db.insert(subscriptions).values({
-        status: subscription.status,
-        userId: session.metadata.userId,
-        subscriptionId: subscription.id,
-        customerId: subscription.customer as string,
-        priceId: subscription.items.data[0].price.product as string,
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-    }
-
-    if (event.type === "invoice.payment_succeeded") {
-      const subscription = await stripe.subscriptions.retrieve(
-        session.subscription as string
-      );
-
-      if (!session?.metadata?.userId) {
-        return c.json({ error: "Invalid session" }, 400);
-      }
-
-      await db
-        .update(subscriptions)
-        .set({
+        await db.insert(subscriptions).values({
           status: subscription.status,
+          userId: session.metadata.userId,
+          subscriptionId: subscription.id,
+          customerId: subscription.customer as string,
+          priceId: subscription.items.data[0].price.product as string,
           currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+          createdAt: new Date(),
           updatedAt: new Date(),
-        })
-        .where(eq(subscriptions.id, subscription.id));
-    }
+        });
+      } else if (event.type === "invoice.payment_succeeded") {
+        const subscription = await stripe.subscriptions.retrieve(
+          session.subscription as string
+        );
 
-    return c.json(null, 200);
+        if (!session?.metadata?.userId) {
+          return c.json({ error: "Invalid session" }, 400);
+        }
+
+        await db
+          .update(subscriptions)
+          .set({
+            status: subscription.status,
+            currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+            updatedAt: new Date(),
+          })
+          .where(eq(subscriptions.id, subscription.id));
+      }
+      return c.json({ received: true }, 200);
+    } catch (error) {
+      console.error("Error processing webhook event:", error);
+      return c.json({ error: "Webhook processing failed" }, 500);
+    }
   });
 
 //i fixed the issue and i think it has nothing to do with the previous code or current but i will keep this code here
