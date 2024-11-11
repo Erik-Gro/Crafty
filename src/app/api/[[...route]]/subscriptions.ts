@@ -153,9 +153,13 @@ const app = new Hono()
           })
           .where(eq(subscriptions.subscriptionId, subscription.id));
       }
+
+      // Return 200 for all valid events to acknowledge receipt
       return c.json({ received: true }, 200);
     } catch (error) {
       console.error("Error processing webhook event:", error);
       return c.json({ error: "Webhook processing failed" }, 500);
     }
   });
+
+export default app;
