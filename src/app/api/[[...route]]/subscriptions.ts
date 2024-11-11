@@ -155,33 +155,4 @@ const app = new Hono()
     }
   });
 
-//i fixed the issue and i think it has nothing to do with the previous code or current but i will keep this code here
-// if (event.type === "invoice.payment_succeeded") {
-//   const invoice = event.data.object as Stripe.Invoice;
-
-//   const subscriptionId = invoice.subscription as string;
-
-//   if (!subscriptionId) {
-//     return c.json(
-//       { error: "Invalid invoice, missing subscription ID" },
-//       400
-//     );
-//   }
-
-//   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-
-//   if (!subscription.metadata?.userId) {
-//     return c.json({ error: "Invalid subscription metadata" }, 400);
-//   }
-
-//   await db
-//     .update(subscriptions)
-//     .set({
-//       status: subscription.status,
-//       currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-//       updatedAt: new Date(),
-//     })
-//     .where(eq(subscriptions.subscriptionId, subscription.id));
-// }
-
 export default app;
