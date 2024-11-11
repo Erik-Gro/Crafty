@@ -108,10 +108,10 @@ const app = new Hono()
       return c.json({ error: "Invalid signature" }, 400);
     }
 
-    const session = event.data.object as Stripe.Checkout.Session;
-
     try {
       if (event.type === "checkout.session.completed") {
+        // Handle checkout.session.completed
+        const session = event.data.object as Stripe.Checkout.Session;
         const subscription = await stripe.subscriptions.retrieve(
           session.subscription as string
         );
@@ -131,13 +131,18 @@ const app = new Hono()
           updatedAt: new Date(),
         });
       } else if (event.type === "invoice.payment_succeeded") {
-        const subscription = await stripe.subscriptions.retrieve(
-          session.subscription as string
-        );
+        // Handle invoice.payment_succeeded
+        const invoice = event.data.object as Stripe.Invoice;
+        const subscriptionId = invoice.subscription as string;
 
-        if (!session?.metadata?.userId) {
-          return c.json({ error: "Invalid session" }, 400);
+        if (!subscriptionId) {
+          console.error("Missing subscription ID in invoice");
+          return c.json({ error: "Invalid invoice data" }, 400);
         }
+
+        const subscription = await stripe.subscriptions.retrieve(
+          subscriptionId
+        );
 
         await db
           .update(subscriptions)
@@ -146,7 +151,7 @@ const app = new Hono()
             currentPeriodEnd: new Date(subscription.current_period_end * 1000),
             updatedAt: new Date(),
           })
-          .where(eq(subscriptions.id, subscription.id));
+          .where(eq(subscriptions.subscriptionId, subscription.id));
       }
       return c.json({ received: true }, 200);
     } catch (error) {
@@ -154,5 +159,3 @@ const app = new Hono()
       return c.json({ error: "Webhook processing failed" }, 500);
     }
   });
-
-export default app;
